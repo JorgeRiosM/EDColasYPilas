@@ -1,0 +1,298 @@
+#include <iostream>
+#include <windows.h>
+#include <stdio.h>
+using namespace std;
+
+//pila
+void Ptit(),Ppush(),Ppop(),Ptop(),Pvacia(),
+     Pinicializar(),Ptamano(),Pvaciar(),PmosTodo();
+//cola
+void Ctit(),Cqueue(),Cdequeue(),Cbuscar(),Cfirst(),Clast(),
+     Cvacia(),Cinicializar(),Ctamano(),Cvaciar(),CmosTodo();
+     
+class pila{
+	public:
+		class Pnodo{
+			public:
+				int dato;
+				Pnodo *siguiente;
+		}Pn;
+		
+		Pnodo *aux,*t;
+		
+		Ptit(){
+			system("cls");
+			cout<<"Pila\n"<<endl;
+		}
+		Ppush(){
+			Ptit();
+			if(aux!=NULL){
+				aux=new Pnodo;
+				cout<<"Numero Entero a Guardar: "<<endl;
+				cin>>aux->dato;
+				aux->siguiente=t;
+				t=aux;
+				cout<<"\nEl Nodo se agrego con exito"<<endl;
+			}
+			else
+				cout<<"La Pila no fue inicializada\n"<<endl;
+		}
+		Ppop(){
+			Ptit();
+			if(aux!=NULL){
+				aux=t;
+				t=t->siguiente;
+				delete aux;
+				cout<<"\nEl Nodo se elimino con exito"<<endl;
+			}
+			else
+				cout<<"La Pila no fue inicializada\n"<<endl;
+		}
+		Ptop(){
+			cout<<"El Dato del elemento superior es: "<<t->dato<<endl;
+		}
+		Pvacia(){
+			Ptit();
+			if(aux!=NULL)
+				cout<<"La Pila no esta vacia"<<endl;
+			else
+				cout<<"La Pila esta vacia"<<endl;
+		}
+		Pinicializar(){
+			Ptit();
+			if(aux==NULL){
+				aux=new Pnodo;
+				cout<<"Numero Entero a Guardar: "<<endl;
+				cin>>aux->dato;
+				aux->siguiente=NULL;
+				t=aux;
+				cout<<"\nLa Pila se creo con exito"<<endl;
+			}
+			else
+				cout<<"La Pila ya fue inicializada\n"<<endl;
+		}
+		Ptamano(){
+			Ptit();
+			int i=0,tamano=0;
+			aux=t;
+			if(aux!=NULL){
+				while(aux!=NULL){
+					tamano++;
+					aux=aux->siguiente;
+				}
+				cout<<"Numeros de Nodos: "<<tamano<<endl;
+			}
+			else
+				cout<<"La Pila no fue inicializada\n"<<endl;
+		}
+		Pvaciar(){
+			aux=t;
+			if(aux!=NULL){
+				aux=t;
+				while(aux!=NULL){
+					t=t->siguiente;
+					delete aux;
+					aux=t;
+				}
+			}
+			else
+				cout<<"La Pila no fue inicializada\n"<<endl;
+		}
+		PmosTodo(){
+			aux=t;
+			if(aux!=NULL){
+				while(aux!=NULL){
+					cout<<aux->dato<<"\n"<<endl;
+					aux=aux->siguiente;
+				}
+			}
+			else
+				cout<<"La Pila no fue inicializada\n"<<endl;
+		}
+}pila;
+class cola{
+	public:
+		class Cnodo{
+			public:
+				int dato;
+				Cnodo *siguiente;
+		}Cn;
+		
+		Cnodo *t,*aux;
+		
+		Ctit(){
+			system("cls");
+			cout<<"Cola\n"<<endl;
+		}
+		Cqueue(){
+			Ctit();
+			if(t!=NULL){
+				aux = new Cnodo;
+				aux->siguiente=t;
+				t=aux;
+				cout<<"Dato a agregar:"<<endl;
+				cin>>t->dato;
+				cout<<"\nEl dato se agrego correctamente"<<endl;
+			}
+			else
+				cout<<"La Cola no fue inicializada\n"<<endl;
+		}
+		Cdequeue(){
+			Cnodo *i;
+			Ctit();
+			if(t!=NULL){
+				aux=t;
+				while(aux->siguiente!=NULL){
+					aux=aux->siguiente;
+					if(aux->siguiente==NULL){
+						i=aux;
+						i->siguiente=NULL;
+					}
+				}
+				delete aux;
+			}
+			else
+				cout<<"La Cola no fue inicializada\n"<<endl;
+		}
+		Cfirst(){
+			Ctit();
+			if(t!=NULL){
+				aux=t;
+				while(aux->siguiente!=NULL){
+					aux=aux->siguiente;
+				}
+				cout<<"El valor del primer Nodo es: "<<aux->dato<<endl;
+			}
+			
+			else
+				cout<<"La Pila no fue inicializada\n"<<endl;
+		}
+		Clast(){
+			Ctit();
+			if(t!=NULL)
+				cout<<"El valor del ultimo elemento es: "<<t->dato<<endl;
+			else
+				cout<<"La Pila no fue inicializada\n"<<endl;
+		}
+		Cvacia(){
+			Ctit();
+			if(t==NULL)
+				cout<<"La cola esta vacia"<<endl;
+			else
+				cout<<"La cola no esta vacia"<<endl;
+		}
+		Cinicializar(){
+			Ctit();
+			if(t==NULL){
+				aux= new Cnodo;
+				t=aux;
+				cout<<"Dato a agregar:"<<endl;
+				cin>>t->dato;
+				t->siguiente=NULL;
+				cout<<"\nLa lista se inicializo correctamente"<<endl;
+			}
+			else
+				cout<<"La Pila ya fue inicializada\n"<<endl;
+		}
+		CTamano(){
+			Ctit();
+			if(t!=NULL){
+				int tamano=1;
+				aux=t;
+				while(aux->siguiente!=NULL){
+					aux=aux->siguiente;
+					tamano++;
+				}
+			}
+			else
+				cout<<"La Pila no fue inicializada\n"<<endl;
+		}
+		Cvaciar(){
+			Ctit();
+			if(t!=NULL){
+				aux=t;
+				while(aux!=NULL){
+					t=t->siguiente;
+					delete aux;
+					aux=t;
+				}
+			}
+			else
+				cout<<"La Pila no fue inicializada\n"<<endl;
+		}
+		CmosTodo(){
+			Ctit();
+			if(t!=NULL){
+				aux=t;
+				while(aux->siguiente!=NULL){
+					cout<<aux->dato;
+					aux=aux->siguiente;
+				}
+			}
+			else
+				cout<<"La Pila no fue inicializada\n"<<endl;
+		}
+}cola;
+
+int main(){
+	int menu,submenu; bool ciclo=true;
+	do{
+		system("cls");
+		cout<<"Listas Y Colas\n"<<endl;
+		cout<<"1: Pila\n2: Cola\n3: Salir"<<endl;
+		cin>>menu;
+		switch(menu){
+			case 1:
+				pila.Ptit();
+				cout<<"1: Push"<<endl;
+				cout<<"2: Pop"<<endl;
+				cout<<"3: Top"<<endl;
+				cout<<"4: Vacia"<<endl;
+				cout<<"5: Inicializar"<<endl;
+				cout<<"6: Tama�o"<<endl;
+				cout<<"7: Vaciar"<<endl;
+				cout<<"8: Mostrar Todo"<<endl;
+				cin>>submenu;
+				switch(submenu){
+					case 1: pila.Ppush();        break;
+					case 2: pila.Ppop();        break;
+					case 3: pila.Ptop();         break;
+					case 4: pila.Pvacia();       break;
+					case 5: pila.Pinicializar(); break;
+					case 6: pila.Ptamano();      break;
+					case 7: pila.Pvaciar();      break;
+					case 8: pila.PmosTodo();     break;
+				}
+				break;
+			case 2:
+				cola.Ctit();
+				cout<<"1: Queuer"<<endl;
+				cout<<"2: Dequeuer"<<endl;
+				cout<<"3: First"<<endl;
+				cout<<"4: Last"<<endl;
+				cout<<"5: Vacia"<<endl;
+				cout<<"6: Inicializar"<<endl;
+				cout<<"7: Tamano"<<endl;
+				cout<<"8: Vaciar"<<endl;
+				cout<<"9: Mostrar Todo"<<endl;
+				cin>>submenu;
+				switch(submenu){
+					case 1:  cola.Cqueue();      break;
+					case 2:  cola.Cdequeue();     break;
+					case 3:  cola.Cfirst();       break;
+					case 4:  cola.Clast();        break;
+					case 5:  cola.Cvacia();       break;
+					case 6:  cola.Cinicializar(); break;
+					case 7:  cola.CTamano();      break;
+					case 8:  cola.Cvaciar();      break;
+					case 9: cola.CmosTodo();     break;
+				}
+				break;
+			case 3: ciclo=false; break;
+			default:
+				cout<<"Opcion Invalida"<<endl;
+				break;
+		}
+		system("pause");
+	}while(ciclo==true);
+}
